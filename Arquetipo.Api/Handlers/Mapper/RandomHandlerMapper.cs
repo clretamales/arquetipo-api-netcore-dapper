@@ -2,7 +2,7 @@ using Arquetipo.Api.Models.Response.Random;
 
 namespace Arquetipo.Api.Handlers;
 
-public static class MapperHandlerRandom
+public static class RandomHandlerMapper
 {
     public static PersonaRandom GetPersonaRandom()
     {

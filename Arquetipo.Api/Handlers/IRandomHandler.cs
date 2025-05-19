@@ -2,7 +2,7 @@ using Arquetipo.Api.Models.Response;
 
 namespace Arquetipo.Api.Handlers;
 
-public interface IHandlerRandom
+public interface IRandomHandler
 {
     Task<ResponseDataExample> GeDataRandomDammy();
 }
