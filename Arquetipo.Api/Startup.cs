@@ -1,6 +1,8 @@
 using System.Text;
+using Arquetipo.Api.Configuration;
 using Arquetipo.Api.Controllers;
 using Arquetipo.Api.Handlers;
+using Arquetipo.Api.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -18,8 +20,18 @@ public class Startup
     public IConfiguration Configuration { get; }
     public void ConfigureServices(IServiceCollection services)
     {
+
         services.AddCustomMvc(Configuration)
                 .AddHttpServices();
+        services.AddControllers()
+                .AddJsonOptions(opts =>
+                {
+                    opts.JsonSerializerOptions.WriteIndented = true;
+                });
+        services.AddOptions<ConnectionStrings>()
+            .Bind(Configuration.GetSection(ConnectionStrings.Seccion))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
@@ -66,9 +78,9 @@ public static class ServiceCollectionExtensions
     {
         //services.
         services.AddOptions();
-        services.AddScoped<IHandlerRandom, HandlerRandom>();
-        // services.AddScoped<IHandlerRandom2, HandlerRandom2>();
-        // services.AddScoped<IHandlerRandom3, HandlerRandom3>();
+        services.AddScoped<IRandomHandler, RandomHandler>();
+        services.AddScoped<IUsuarioHandler, UsuarioHandler>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         // services.AddScoped<IHandlerRandom4, HandlerRandom4>();
 
         services.AddControllers();

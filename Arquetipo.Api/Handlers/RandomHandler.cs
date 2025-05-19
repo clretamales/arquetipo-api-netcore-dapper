@@ -3,10 +3,10 @@ using Arquetipo.Api.Models.Response.Random;
 
 namespace Arquetipo.Api.Handlers;
 
-public class HandlerRandom : IHandlerRandom
+public class RandomHandler : IRandomHandler
 {
-    private readonly ILogger<HandlerRandom> _logger;
-    public HandlerRandom(ILogger<HandlerRandom> logger)
+    private readonly ILogger<RandomHandler> _logger;
+    public RandomHandler(ILogger<RandomHandler> logger)
     {
         _logger = logger;
     }
@@ -21,11 +21,11 @@ public class HandlerRandom : IHandlerRandom
                                 SegurosAsociados = new List<SeguroRandom>()
                             };
 
-        dataRandom.DatosPersonales = MapperHandlerRandom.GetPersonaRandom();
-        dataRandom.SegurosAsociados = MapperHandlerRandom.GetSegurosRandomList();
+        dataRandom.DatosPersonales = RandomHandlerMapper.GetPersonaRandom();
+        dataRandom.SegurosAsociados = RandomHandlerMapper.GetSegurosRandomList();
         response.Data = dataRandom;
 
-        await Task.Delay(1000);
+        await Task.Delay( TimeSpan.FromMicroseconds(10) );
 
         return response;
     }

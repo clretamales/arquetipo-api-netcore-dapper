@@ -27,9 +27,12 @@ public class UserJWTController : ControllerBase
     public async Task<IActionResult> GetUserInfoAsync()
     {
         _logger.LogInformation("Ejecucion service userInfo");
-        await Task.Delay(1000);
+       
+        await Task.Delay( TimeSpan.FromMicroseconds(10) );
+       
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // lo obtiene del claim del token, debe existir la propiedad en el token
         var userEmail = User.FindFirstValue(ClaimTypes.Email); //
+        
         // ejemplo response con herencia de clase
         var response = new ResponseUserJWT { UsersJwt = new UserJWTData { Id = userId, Email = userEmail}  };
         return Ok(response);

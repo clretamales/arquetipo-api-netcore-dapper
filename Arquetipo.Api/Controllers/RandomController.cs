@@ -13,14 +13,14 @@ public class RandomController : ControllerBase
 {
     private readonly ILogger<RandomController> _logger;
     private readonly Random _random;
-    private readonly IHandlerRandom _handlerRandom;
+    private readonly IRandomHandler _randomHandler;
 
     public RandomController(ILogger<RandomController> logger,
-                           IHandlerRandom handlerRandom)
+                           IRandomHandler randomHandler)
     {
         _logger = logger;
         _random = new Random();
-        _handlerRandom = handlerRandom;
+        _randomHandler = randomHandler;
     }
 
     /// <summary>Obtiene Numero Random</summary>
@@ -52,7 +52,7 @@ public class RandomController : ControllerBase
     public async Task<IActionResult> GetExampleresponse()
     {
         var response = new ResponseDataExample();
-        response = await _handlerRandom.GeDataRandomDammy();
+        response = await _randomHandler.GeDataRandomDammy();
         return Ok(response);
     }
 
@@ -68,7 +68,7 @@ public class RandomController : ControllerBase
 
         if (shouldGenerateError)
         {
-            _logger.LogError("Un error aleatorio ha sido generado.");
+            _logger.LogError( 500 , "Un error aleatorio ha sido generado." );
             return StatusCode(500, "Se generó un error aleatorio.");
         }
         else

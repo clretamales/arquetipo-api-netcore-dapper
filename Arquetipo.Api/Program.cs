@@ -12,7 +12,6 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
-    builder.Logging.AddNLog(builder.Configuration.GetSection("NLog"));
     builder.Logging.AddConsole();
 }
 
