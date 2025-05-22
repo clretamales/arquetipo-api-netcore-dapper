@@ -1,12 +1,11 @@
-# ```IMPLEMENTACION Y CONFIGURACION ARQUETIPO API .NET 6``` #
+# ```IMPLEMENTACION Y CONFIGURACION ARQUETIPO API .NET 8``` #
 
- <p align="left">
-   <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
-</p>
+![Status: En Desarrollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
 
 ***
 
-# ```Contenido``` #
+## ```Contenido``` ##
+
 1. [Requisitos Previos](#requisitos-previos)
 2. [Creación Proyecto WebApi Clean](#creación-proyecto-webapi-clean)
 3. [Distribución Carpetas en Arquetipo.Api](#distribución-carpetas-arquetipo-api)
@@ -16,20 +15,18 @@
 7. [Configuración Program.cs](#configuración-program)
 
 ***
-## **```Requisitos Previos```**
 
-Para crear una Web API en .NET Core 6 en Windows, debes cumplir con los siguientes requisitos previos:
+## **```Requisitos Previos```** ##
 
-1. **Instalar ```.NET Core 6 SDK```:** Debes instalar el ```.NET Core 6 SDK``` en tu máquina. Puedes descargarlo desde el sitio web oficial de .NET: https://dotnet.microsoft.com/download/dotnet/6.0. Asegúrate de seleccionar el instalador adecuado para tu versión de Windows (x64 o ARM64).
+Para crear una Web API en .NET Core 8 en Windows, debes cumplir con los siguientes requisitos previos:
 
-2. **Instalar ```Visual Studio Code```:** Para desarrollar aplicaciones en ```.NET Core 6```, necesitarás un entorno de desarrollo. Puedes utilizar ```Visual Studio Code```, que es multiplataforma y más ligero que Visual Studio 2022. Descarga e instala desde la siguiente ubicación:
-    * **Visual Studio Code: https://code.visualstudio.com/download**
+1. **Instalar ```.NET Core 8 SDK```:** Debes instalar el ```.NET Core 8 SDK``` en tu máquina. Puedes descargarlo desde el sitio web oficial de .NET: <https://dotnet.microsoft.com/es-es/download/dotnet/8.0>. Asegúrate de seleccionar el instalador adecuado para tu versión de Windows (x64 o ARM64).
 
-    También deberás instalar la **```extensión "C#"```** para obtener soporte para el ```lenguaje C#``` y las herramientas de ```.NET```: https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
-
+2. **Instalar ```Visual Studio Code```:** Para desarrollar aplicaciones en ```.NET Core 8```, necesitarás un entorno de desarrollo. Puedes utilizar ```Visual Studio Code```, que es multiplataforma y más ligero que Visual Studio 2022. Descarga e instala desde la siguiente ubicación:
+    * **Visual Studio Code: <https://code.visualstudio.com/download>**
 ***
 
-## **```Creación Proyecto WebApi Clean```**
+## **```Creación Proyecto WebApi Clean```** ##
 
 Abra la terminal (```línea de comandos```, ```PowerShell```, etc.) y navegue hasta la carpeta donde desea crear la solución y los proyectos.
 
@@ -83,9 +80,9 @@ Siguiendo estos pasos, se creará una solución con tres proyectos : **```"Arque
 
 ***
 
-## **Distribución Carpetas ```Arquetipo Api```**
+## **Distribución Carpetas ```Arquetipo Api```** ##
 
-En el siguiente esquema se muestra la distribución de ```carpetas``` y ```namespaces``` para un proyecto ```Web API``` en ```.Net6```
+En el siguiente esquema se muestra la distribución de ```carpetas``` y ```namespaces``` para un proyecto ```Web API``` en ```.Net8```
 
 Aca encontraras la definicion y la funcionalidad de la palabra reservada [**namespace**](https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/language-specification/namespaces)
 
@@ -161,9 +158,10 @@ Arquetipo
                 WeatherForecastService.cs
                 // Aqui van las clases relacionadas con el consumo de servicios ApiRest de otras Apis.
 ```
+
 ***
 
-## **Configuración Proyecto ```Arquetipo Api csproj```**
+## **Configuración Proyecto ```Arquetipo Api csproj```** ##
 
 Agruegue los siguientes elementos dentro de la etiqueta ```<PropertyGroup>``` en el archivo ```Arquetipo.Api.csproj``` y luego **```"Guarde"```** los cambios ingresados en el archivo ```*.csproj```:
 
@@ -240,12 +238,11 @@ dotnet add package Swashbuckle.AspNetCore --version 6.2.3
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 6.0.0
 ```
 
-
 **```Nota```**: las versiones packages utilizadas en este documento son **latest** por ende existe la posibilidad que pueden variar cuando lea este documento.
 
 ***
 
-2. Abra el archivo **```Arquetipo.Api.csproj```** y agregue las siguientes referencias de ```packages``` al proyecto dentro de la etiqueta **```"<ItemGroup>"```** y ```"Guarde"``` los cambios realizados en el archivo.
+2 . Abra el archivo **```Arquetipo.Api.csproj```** y agregue las siguientes referencias de ```packages``` al proyecto dentro de la etiqueta **```"<ItemGroup>"```** y ```"Guarde"``` los cambios realizados en el archivo.
 
 ```XML
 <ItemGroup>
@@ -284,7 +281,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 6.0.0
 </Project>
 ```
 
-* Para finalizar ejecute el siguiente ```script``` en la ```terminal ```de la ruta base donde se encuentra el proyecto (```*.csproj```) o solucion (```*.sln```), asi restaurar e instalar los packeges ```nugguets```:
+* Para finalizar ejecute el siguiente ```script``` en la ```terminal```de la ruta base donde se encuentra el proyecto (```*.csproj```) o solucion (```*.sln```), asi restaurar e instalar los packeges ```nugguets```:
 
 ```C#
 dotnet restore
@@ -292,7 +289,7 @@ dotnet restore
 
 ***
 
-## **Agregar Archivo Seguridad ```HeaderValidationAttribute```**
+## **Agregar Archivo Seguridad ```HeaderValidationAttribute```** ##
 
 Para **```segurizar```** los EndPoints debemos crear dentro de la carpeta ```Security``` (si no existe se debe crear) un archivo con el nombre **```"HeaderValidationAttribute.cs"```**, una vez creado agregue el siguiente codigo y **```"Guarde"```** los cambios :
 
@@ -352,6 +349,7 @@ public class HeaderValidationAttribute : ActionFilterAttribute
     }
 }
 ```
+
 A continuacion un ejemplo de implementacion en un ```Controller```.
 
 ```C#
@@ -399,7 +397,7 @@ public class MyController : ControllerBase
     }
     ```
 
-  2. ejemplo **launch.json** :
+  1. ejemplo **launch.json** :
 
     ```json
     {
@@ -434,9 +432,10 @@ public class MyController : ControllerBase
       ]
     }
     ```
+
 ***
 
-## **Agregar Archivo Configuración ConfigureSwaggerOptions**
+## **Agregar Archivo Configuración ConfigureSwaggerOptions** ##
 
 La clase ```ConfigureSwaggerOptions``` configura las opciones de ```SwaggerGen``` en una aplicación ```ASP.NET Core.``` A continuacion crea dentro de la carpeta **```"Configuration"```** el archivo **ConfigureSwaggerOptions.cs**
 
@@ -531,12 +530,12 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
   }
 }
 ```
+
 * **```nota```** : la configuración de esta ckase la haremos desde el archico **```Startup.cs```** que veremos en los siguientes pasos.
 
-## **Configuración Program**
+## **Configuración Program** ##
 
 Remplece el codigo de **```Program.cs```** por el siguiente codigo :
-
 
 ```C#
 using Microsoft.Extensions.Logging.EventLog;
@@ -674,11 +673,11 @@ Explicación de la configuración:
 
 * imagen de referencia visor de evento en windows :
 
-![](img/Event-viewer.JPG)
+![Event Viewer in Windows](img/Event-viewer.JPG)
 
 ***
 
-## **Configuración Startup**
+## **Configuración Startup** ##
 
 Desde la version .Net 5 no viene poe defecto la clase Startup.cs, recomendamos crearlo para tener una configuracion de la Api mas clara y ordenara para futuras mantenciones.
 A continuacion cree el archivo Startup.cs en la raiz del proyecto Arquetipo.Api y copie el siguiente codigo y guarde los cambios:
@@ -836,6 +835,40 @@ public static class ServiceCollectionExtensions
 }
 
 ```
+***
+
+## **Agregar archivo .editorconfig para formato y codificación** ##
+
+Para asegurar una codificación consistente y buenas prácticas de estilo entre todos los desarrolladores del proyecto, se recomienda agregar un archivo **`.editorconfig`** en la raíz del repositorio. Este archivo ayuda a los editores compatibles (como Visual Studio Code o Visual Studio) a aplicar reglas comunes automáticamente.
+
+A continuación, un ejemplo básico de archivo `.editorconfig`:
+
+```ini
+# EditorConfig ayuda a mantener estilos de codificación consistentes entre distintos editores e IDEs
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+```
+
+### Descripción:
+
+- `charset = utf-8`: asegura que todos los archivos se guarden con codificación UTF-8.
+- `end_of_line = lf`: define el fin de línea como **`LF`**, común en entornos Unix, usar **`crlf`** si estás solo en Windows.
+- `insert_final_newline = true`: agrega una línea en blanco al final del archivo.
+- `trim_trailing_whitespace = true`: elimina los espacios en blanco al final de cada línea.
+
+Este archivo debe ser agregado al control de versiones (`git`) para que todas las personas del equipo lo utilicen.
+
+Para más información, puedes revisar la documentación oficial: [https://editorconfig.org/](https://editorconfig.org/)
+
+***
+
 
 ### Contribution guidelines ###
 

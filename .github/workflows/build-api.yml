@@ -1,0 +1,32 @@
+# .github/workflows/build-api.yml
+name: Build Arquetipo.Api
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore Arquetipo.Api/Arquetipo.Api.csproj
+
+      - name: Build Arquetipo.Api
+        run: dotnet build Arquetipo.Api/Arquetipo.Api.csproj --configuration Release --no-restore
+
+      - name: Verify build succeeded
+        run: echo "✅ Build completed successfully"

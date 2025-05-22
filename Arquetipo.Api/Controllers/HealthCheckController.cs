@@ -25,7 +25,7 @@ namespace Arquetipo.Api.Controllers
                 // Sólo abrimos la conexión
                 await conn.OpenAsync();
                 // Si no lanza excepción, todo bien
-                return Ok(new { status = "Healthy" });
+                return Ok(new { status = "Healthy" , value = connectionString});
             }
             catch (MySqlException mex) // OracleException
             {
@@ -47,7 +47,7 @@ namespace Arquetipo.Api.Controllers
             catch (Exception ex)
             {
                 // Error al abrir → servicio no disponible
-                return StatusCode(503, new { status = "Unhealthy", error = ex.Message });
+                return StatusCode(503, new { status = "Unhealthy", error = connectionString });
             }
         }
     }
